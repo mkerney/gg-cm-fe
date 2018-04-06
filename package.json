@@ -1,0 +1,32 @@
+{
+  "name": "gg-cm-fe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "angular-cookies": "^1.5.8",
+    "angular-masonry": "^0.16.0",
+    "angular-ui-bootstrap": "^2.2.0",
+    "coffee-script": "^1.10.0",
+    "dotenv": "^2.0.0",
+    "grunt-cli": "^1.2.0",
+    "jshint": "^2.9.4",
+    "ngSmoothScroll": "^2.0.0",
+    "ngmap": "^1.17.7",
+    "superstatic": "^4.0.3"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  },
+  "scripts": {
+    "jshint": "jshint --exclude ./node_modules,./app.js,./server.js, .",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gigster-eng/Front-End.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/gigster-eng/Front-End/blob/master/README.md"
+}

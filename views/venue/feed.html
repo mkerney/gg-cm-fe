@@ -1,0 +1,86 @@
+<div class="feed-wrapper tablet-wrapper clearfix" ng-init="feedInit()" style="height: {{ feedActualHeight + 'px'}};">
+  <div class="tablet-left" id="tabletLeft">
+    <div class="filter-container">
+      <div search></div>
+      <div class="filter-wrapper">
+        <!--      <button ui-sref="filter.main" ng-hide="filterView" type="button" name="button" class="btn btn-warning"><img src="../../images/ic-filter.png" alt=""> Filter</button>
+              <button ng-click="resetFilter()" ng-show="filterView" type="button" name="button" class="btn btn-primary"><img src="../../images/ic-filter.png" alt=""> Filter</button>-->
+        <button ng-hide="filterView" ng-class="{active: activeClass}" type="button" name="button" class="btn" ng-click="openFilterModal()"><img src="../../images/ic-filter.png" alt=""> Filter</button>
+        <button ng-show="filterView" ng-class="{active: activeClass}" type="button" name="button" class="btn active" ng-click="openFilterModal()"><img src="../../images/ic-filter.png" alt=""> Filter</button>
+        <button  ng-hide="favoritesView" ng-click="showFavorites()" type="button" name="button" class="btn btn-warning"><img src="../../images/ic-fav-filter.png" alt=""> Favorites</button>
+        <button ng-show="favoritesView" ng-click="showFavorites()" type="button" name="button" class="btn btn-primary"><img src="../../images/ic-fav-filter.png" alt=""> Favorites</button>
+      </div>
+    </div>
+    <div ng-repeat="venue in venues | orderBy: 'distance' track by $index">
+      <div venue-details venue="venue" ng-if="venue.priceLevel >= priceLevelMin && venue.priceLevel <= priceLevelMax"></div>
+    </div>
+    <br />
+  </div>
+  <!--  Map Section For Tablet Starts  -->
+  <div class="tablet-map hidden-xs">
+    <div class="filter-restaurants-wrapper hidden">
+      <div class="profile-close">
+        <div back-x></div>
+      </div>
+      <div class="head-title">
+        <h4>Filter Restaurants</h4>
+      </div>
+      <div class="filter">
+        <div class="filter-title">
+          <a href="javascript:void(0);">
+            <span class="fa fa-angle-right"></span>
+          </a>
+          <h4>Open now or within…</h4>
+        </div>
+      </div>
+      <div class="filter">
+        <div class="filter-title">
+          <a href="javascript:void(0);">
+            <span class="fa fa-angle-right"></span>
+          </a>
+          <h4>Distance</h4>
+        </div>
+      </div>
+      <div class="filter">
+        <div class="filter-title">
+          <a href="javascript:void(0);">
+            <span class="fa fa-angle-right"></span>
+          </a>
+          <h4>Cuisine</h4>
+        </div>
+      </div>
+      <div class="filter">
+        <div class="filter-title">
+          <a href="javascript:void(0);">
+            <span class="fa fa-angle-right"></span>
+          </a>
+          <h4>Features</h4>
+        </div>
+      </div>
+      <div class="filter">
+        <div class="filter-title">
+          <a href="javascript:void(0);">
+            <span class="fa fa-angle-right"></span>
+          </a>
+          <h4>Average Price</h4>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn btn-default btn-reset">Reset</button>
+      </div>
+    </div>
+    <div class="map-wrapper">
+      <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}" style="height: {{ feedActualHeight + 'px'}};">
+        <ng-map id="iPadFeedMap" zoom="14" center="Times Square, New York, NY">
+          <custom-marker ng-repeat="venue in venues" position="[{{venue.lat}}, {{venue.lng}}]">
+            <div class="marker-container">
+              <div class="marker-pin-name" ng-if="venue.showPlaceName === true">{{venue.name}}</div>
+              <img ng-click="showPlaceNameAndHighlightFeed(venue)" class="custom-marker-img" src="../images/ic-pin-marker.png" alt="">
+            </div>
+          </custom-marker>
+        </ng-map>
+      </div>
+    </div>
+  </div>
+  <!--  Map Section For Tablet Ends  -->
+</div>

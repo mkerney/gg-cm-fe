@@ -1,0 +1,53 @@
+<div class="send-referral-wrapper"  ng-init="getReferralInfo(); sendInit();" style="min-height: {{ referralFormHeight + 'px'}};">
+  <div class="referral-subheader">
+    <div class="profile-close">
+      <div back-chevron></div>
+    </div>
+    <div class="head-title">
+      <h4>Send Referral Link</h4>
+    </div>
+  </div>
+  <div class="referral-form-wrapper">
+    <form>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <div class="custom-check">
+                <label class="checkbox-inline">
+                  <input type="checkbox" ng-model="sendMethodEmail">
+                  <span><i class="fa fa-check"></i></span> Email
+                </label>
+              </div>
+              <input ng-model="email" type="text" class="form-control" placeholder="Email Address" />
+            </div>
+            <div class="form-group">
+              <div class="custom-check">
+                <label class="checkbox-inline">
+                  <input type="checkbox" ng-model="sendMethodSMS">
+                  <span><i class="fa fa-check"></i></span> SMS
+                </label>
+              </div>
+              <input ng-model="smsNumber" ng-change="validateNumbers(smsNumber)" type="text" class="form-control" type="number" placeholder="Cell Phone Number" />
+              <p ng-show="numberValidate===false" style="color:red">Only numbers allowed</p>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Subject</label>
+              <input type="text" class="form-control" placeholder="Subject" ng-model="referral.subjectLineForEmail" />
+            </div>
+            <div class="form-group mb-0">
+              <label class="control-label">Message</label>
+              <textarea class="form-control" rows="6" ng-model="referral.body"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center cta-button-wrapper">
+        <p style="color:red">{{errMessage}}</p>
+        <button ng-click="sendReferral()" type="button" name="button" class="btn btn-default btn-block btn-send" ng-disabled="sendMethodEmail === false && sendMethodSMS === false || numberValidate===false">
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

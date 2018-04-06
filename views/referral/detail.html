@@ -1,0 +1,79 @@
+<div>
+  <div class="referral-subheader non-printable">
+    <div class="profile-close">
+      <div back-chevron></div>
+    </div>
+    <div class="head-title">
+      <h4>Create a Referral</h4>
+    </div>
+  </div>
+  <div ng-init="getReferralInfo()" class="create-referral-wrapper print-referral-wrapper">
+    <img class="main-img printable" ng-src="../../images/hotel-le-six-paris.png">
+    <div class="container-fluid">
+      <div class="text-center cafe-details">
+        <h3 class="referral-title non-printable">Guest of Hotel Le Six</h3>
+        <h3 class="referral-name">{{referral.venueId.name}}</h3>
+        <p class="subtitle"><span ng-repeat="cuisine in referral.venueId.cuisine track by $index">{{cuisine}}<span ng-hide="$last">/</span></span></p>
+        <p class="address">{{referral.venueId.streetAddress}}, {{referral.venueId.city}}, {{referral.venueId.state}}, {{referral.venueId.zip}}</p>
+        <p class="phone">{{referral.venueId.phoneNumber}}</p>
+        <p class="site non-printable"><a href="{{referral.venueId.website}}" target="_blank">{{referral.venueId.website}}</a></p>
+        <p class="site printable"><a>{{referral.venueId.website}}</a></p>
+        <p ng-show="referral.date">Open {{referral.date| date: 'EEEE'}} <span ng-repeat="dayHours in daysHours">{{dayHours.open.time| militaryToStandardTime}} - {{dayHours.close.time| militaryToStandardTime}} </span></p>
+      </div>
+      <div class="reservation-details text-center" ng-if="referral.date && referral.reservationTime &&referral.amountOfPeople">
+        <h4>Reservation Details</h4>
+        <p class="date">{{referral.date | date: 'dd/MM/yyyy'}}, {{referral.reservationTime}}, {{referral.amountOfPeople}} people</p>
+        <div ng-if="referral.notes">
+          <p>Notes:</p>
+          <p>{{referral.notes}}</p>
+        </div>
+      </div>
+      <div class="map-wrapper">
+        <h4 class="map-title">Directions from Hotel Le Six</h4>
+        <div google-map></div>
+      </div>
+    </div>
+
+   <div class="address-list-wrapper" ng-if="referral.placesOfInterest.length > 0">
+      <h4>Other places of interest</h4>
+      <ul class="list-unstyled other-palaces">
+        <li ng-repeat="place in referral.placesOfInterest">
+          <a>
+            <img src="../../images/ic-pin-end.png" alt=""/>
+            <p>{{place.name}}</p>
+            <span>
+              {{place.streetAddress}},{{place.city}}, {{place.state}} {{place.zip}}
+              <br/>
+              {{place.phoneNumber}}
+              <br/>
+              <span ng-repeat="cuisine in place.cuisine track by $index">{{cuisine}}<span ng-hide="$last">/</span></span>
+              <br/>
+              <!-- {{place.distance}} mi-->
+              2.49mi
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div> 
+
+    <div class="button-wrapper non-printable">
+      <div class="cta-button-wrapper">
+        <div class="btn-half-container">
+          <button type="button" name="button" class="btn btn-default" ng-click="printReferral()">
+            <img src="../../images/ic-referral.png" alt=""/>
+            Print
+          </button>
+        </div>
+        <div class="btn-half-container">
+          <button type="button" name="button" class="btn btn-default"ui-sref="referral.send({id:referral._id})">
+            <img src="../../images/ic-send.png" alt=""/>
+            Send
+          </button>
+        </div>
+      </div>
+      <div class="text-center">
+        <a ui-sref="referral.success({sent:false})" class="btn btn-default btn-later">Save for later</a>
+      </div>
+    </div>
+  </div>
+</div>

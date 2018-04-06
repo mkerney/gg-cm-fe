@@ -1,0 +1,93 @@
+<div class="referral-form-wrapper create-form" ng-init="createInit()" style="min-height: {{ referralFormHeight + 'px'}};">
+  <div class="referral-subheader">
+    <div class="profile-close">
+      <div back-chevron></div>
+    </div>
+    <div class="head-title">
+      <h4>Create a Referral</h4>
+    </div>
+  </div>
+  <form>
+    <div class="container-fluid">
+      <h4>{{venue.name}}</h4>
+      <div class="form-group">
+        <label class="control-label">Guest Name</label>
+        <input ng-model="referral.guestName" type="text" class="form-control" placeholder="Name" />
+      </div>
+      <div class="">
+        <h4>Reservation Details</h4>
+      </div>
+      <div class="form-group has-feedback">
+        <label class="control-label">Date</label>
+        <div class="form-group has-feedback">
+          <p class="input-group">
+            <input ng-change="calculateOpenTimes()"
+              ng-model="referral.date"
+              uib-datepicker-popup="dd/MM/yyyy"
+              type="text"
+              class="form-control"
+              is-open="popup1.opened"
+              popup-placement="bottom-right"
+              datepicker-options="dateOptions"
+              ng-required="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default datepicker_button" ng-click="open1()"><img ng-src="../../images/ic-calendar.png" alt=""/></button>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group has-feedback">
+            <label class="control-label">Time</label>
+            <select class="form-control" ng-model="referral.reservationTimeAmOrPm">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
+            <span class="form-control-feedback">
+              <img ng-src="../../images/ic-selector-white.png" class="ic-small-white-selector visible-xs" alt=""/>
+              <img ng-src="../../images/ic-selector-white.png" class="ic-white-selector hidden-xs" alt=""/>
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group  has-feedback">
+            <label class="control-label invisible">Time</label>
+            <select class="form-control" ng-model="referral.reservationTime">
+              <option selected="true" disabled="disabled">Select a Time</option>
+              <option disabled="true" ng-hide="referral.date">Please pick a date first</option>
+              <option disabled="true" ng-show="closedAllDay">Closed all day, please pick another date</option>
+              <option disabled="true" ng-show="referral.reservationTimeAmOrPm === 'AM' && notOpeninAm">Not Open in AM</option>
+              <option disabled="true" ng-show="referral.reservationTimeAmOrPm === 'PM' && notOpeninPm">Not Open in PM</option>
+              <option ng-if="referral.reservationTimeAmOrPm === 'AM'" ng-repeat="hour in amHours">{{hour| militaryToStandardTimeNoAmOrPm}}</option>
+              <option ng-if="referral.reservationTimeAmOrPm === 'PM'" ng-repeat="hour in pmHours">{{hour| militaryToStandardTimeNoAmOrPm}}</option>
+            </select>
+<!--             <select class="form-control" ng-model="referral.reservationTime" ng-hide="referral.reservationTimeAmOrPm === 'AM'">
+              <option selected="true" disabled="disabled">Select a Time</option>
+              <option disabled="true" ng-show="closedAllDay">Closed all day, please pick another date</option>
+              <option disabled="true" ng-show="notOpeninPm">Not Open in PM</option>
+              <option ng-repeat="hour in pmHours">{{hour| militaryToStandardTimeNoAmOrPm}}</option>
+            </select> -->
+            <span class="form-control-feedback">
+              <img ng-src="../../images/ic-selector-white.png" class="ic-small-white-selector visible-xs" alt=""/>
+              <img ng-src="../../images/ic-selector-white.png" class="ic-white-selector hidden-xs" alt=""/>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Number of Guests</label>
+        <input ng-model="referral.amountOfPeople" type="text" class="form-control" id="guest-number" placeholder="Number"  />
+
+        <p style="color:red" ng-show="referral.amountOfPeople && referral.amountOfPeople < 1 || referral.amountOfPeople === 0">
+          Minimum Number of guests is 1
+        </p>
+      </div>
+      <div class="form-group has-feedback mb0">
+        <label class="control-label">Notes</label>
+        <textarea ng-model="referral.notes" class="form-control" rows="6"></textarea>
+      </div>
+      <button type="button" name="button" class="btn btn-default btn-block" ng-disabled="referral.amountOfPeople && referral.amountOfPeople < 1 || referral.amountOfPeople === 0" ng-click="addReferral()">Next</button>
+    </div>
+  </form>
+</div>

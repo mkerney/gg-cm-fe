@@ -1,0 +1,74 @@
+/*==============================================================================
+***********************           Profile Styles           *********************
+==============================================================================*/
+.profile-wrapper{
+  padding         : 50px 0;
+  position        : relative;
+  background-color: #232323;
+}
+.profile-close{
+  font-size: 18px;
+  position : absolute;
+  top      : 22px;
+  left     : 20px;
+  z-index  : 99;
+}
+.profile-close a{
+  color: #fff;
+}
+.profile-wrapper .profile-close a{
+  color  : #ffffff;
+  display: inline-block;
+}
+.profile-wrapper .details-container {
+  color     : #ffffff;
+  text-align: center;
+}
+.profile-wrapper .details-container .name{
+  font-size  : 18px;
+  font-weight: 500;
+  text-align : center;
+  margin     : 15px auto 5px;
+}
+.profile-wrapper .details-container .address{
+  font-size  : 14px;
+  line-height: 1.57;
+  opacity    : 0.8;
+}
+.profile-wrapper .profile-menu ul{
+  margin-top      : 40px;
+  border-radius   : 0;
+  background-color: transparent;
+}
+.profile-wrapper .profile-menu ul li{
+  border          : 0;
+  border-radius   : 0;
+  border-top      : 1px solid #000;
+  background-color: transparent;
+}
+.profile-wrapper .profile-menu ul li:last-of-type{
+  border-bottom: 1px solid #000;
+}
+.profile-wrapper .profile-menu a{
+  font-size         : 14px;
+  color             : #fff;
+  text-decoration   : none;
+  line-height       : 18px;
+  display           : block;
+  padding           : 20px;
+  transition        : all 0.3s ease-in-out;
+  -moz-transition   : all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+.profile-wrapper .profile-menu a i{
+  font-size   : 18px;
+  margin-right: 5px;
+}
+.profile-wrapper .profile-menu a:hover{
+  color: #bc986c;
+}
+
+
+/*==============================================================================
+*********************              Media Styles            *********************
+==============================================================================*/

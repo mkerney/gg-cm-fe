@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h4>Account Details</h4>
+  </div>
+  <div class="col-md-12">
+    <h5><label for="username">Your Display name</label></h5>
+    <input ng-model="user.username" type="username" id="username" />
+    <h5><label for="email">E-mail Address</label></h5>
+    <input id="email" ng-model="user.email" />
+    <br>
+    <br>
+    <input ng-model="updatePass" type="checkbox" /> Update Password
+    <div ng-show="updatePass">
+      <h5><label for="oldPassword">Old Pasword</label></h5>
+      <input id="oldPassword" type="password" /><br>
+      <h5><label for="newPassword">New Pasword</label></h5>
+      <input id="newPassword" type="password" /><br>
+      <h5><label for="confNewPassword">Confirm New Pasword</label></h5>
+      <input id="confNewPassword" type="password" /><br><br>
+    </div>
+  </div>
+  <div class="col-md-12 text-center">
+    <button ui-sref="user.profile({user_id: '57d97192c52ef0a1004e5be2'})" class="btn btn-default">Update</button>
+  </div>
+</div>

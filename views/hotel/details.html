@@ -1,0 +1,76 @@
+<div ng-init="hotelDetailsInit()">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h4>Hotel Management</h4>      
+    </div>
+    <div class="col-xs-6 text-center" ng-click="detailConciergeToggle()">
+      <a ng-click="detail=true; concierge=false"><h4>Hotel Details</h4></a>      
+    </div>
+    <div class="col-xs-6 text-center" ng-click="detailConciergeToggle()">
+    <a ng-click="detail=false; concierge=true"><h4>Concierges</h4></a>      
+    </div>
+  </div>
+  <div class="row" ng-show="detail">
+    <div class="col-xs-12">
+      <h5><label for="hotelName">Hotel Name</label></h5>
+      <input ng-model="hotel.name" type="hotelName" id="hotelName" />
+      <h5><label for="logo">Hotel Logo</label></h5>
+      <button class="btn btn-default">Browse...</button>
+      <h5><label for="hotelLocation">Location</label></h5>
+      <input ng-model="hotel.address" type="hotelLocation" id="hotelLocation" />
+      <h5><label for="hotelStarRating">Star Rating</label></h5>
+      <select ng-model=hotel.starRating>
+        <option value="1-star hotel">1-star hotel</option>
+        <option value="2-star hotel">2-star hotel</option>
+        <option value="3-star hotel">3-star hotel</option>
+        <option value="4-star hotel">4-star hotel</option>
+        <option value="5-star hotel">5-star hotel</option>
+      </select>
+      <h5><label for="hotelStyle">Style of Hotel</label></h5>
+      <select>
+        <option value="luxury">Luxury</option>
+        <option value="moterInn">Motor Inn</option>
+        <option value="motel">Motel</option>
+      </select>
+      <h5><label for="hotelNumRoomes">Number of Rooms</label></h5>
+      <select ng-model=hotel.numRooms>
+        <option value="1-50">1-50</option>
+        <option value="50-100">50-100</option>
+        <option value="100-500">100-500</option>
+        <option value="500-1000">500-1000</option>
+        <option value="1000-5000">1000-5000</option>
+        <option value="5000+">5000+</option>
+      </select>
+      <h5><label for="hotelOccRate">Occupancy Rate</label></h5>
+      <select ng-model=hotel.occRate>
+        <option value="0%-10%">0%-10%</option>
+        <option value="10%-20%">10%-20%</option>
+        <option value="20%-30%">20%-30%</option>
+        <option value="30%-40%">30%-40%</option>
+        <option value="40%-50%">40%-50%</option>
+        <option value="50%-60%">50%-60%</option>
+        <option value="60%-70%">60%-70%</option>
+        <option value="70%-80%">70%-80%</option>
+        <option value="80%-90%">80%-90%</option>
+        <option value="90%-100%">90%-100%</option>
+      </select>
+    </div>
+    <div class="col-xs-12 text-center">
+      <button ui-sref="user.profile({user_id: '57d97192c52ef0a1004e5be2'})" class="btn btn-default">
+        Save
+      </button>
+    </div>
+  </div>  
+  <div class="row" ng-show="concierge">
+    <div class="col-xs-12 text-center">
+      <a><i class="fa fa-download" aria-hidden="true"></i> Export Concierge contact list (CSV)</a>
+    </div>
+    <div class="col-xs-2">
+      <a ui-sref="user.addConcierge"><img class="img-circle" src="https://www.placecage.com/50/50" alt="" /></a>
+    </div>
+    <div class="col-xs-10">
+      <br>
+      <a ui-sref="user.addConcierge">Add Concierge</a>
+    </div>
+  </div>
+</div>

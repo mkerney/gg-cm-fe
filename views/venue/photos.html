@@ -1,0 +1,19 @@
+<div class="photo-wrapper">
+  <div class="container-fluid" style="position: relative">
+    <div ng-init=photosInit()>
+      <div class="profile-close">
+        <div back-chevron></div>
+      </div>
+      <div class="head-title">
+        <h4>{{venue.name}} Photos</h4>
+      </div>
+    </div>
+    <div>
+      <div class="masonry" masonry>
+        <div class="grid" ng-repeat="photo in photos">
+          <img class="img-responsive" ng-src="{{ photo.picUrl}}" alt="A masonry brick">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

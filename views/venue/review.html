@@ -1,0 +1,57 @@
+<div ng-hide="tagSelection" ng-init="reviewInit()" class="review-bar" style="min-height: {{ reviewFormHeight + 'px'}};">
+  <div class="review-subheader">
+    <div class="profile-close ">
+      <div back-chevron></div>
+    </div>
+    <div class="head-title text-center bottom-border">
+       <h4>Rate & Review</h4>
+    </div>
+  </div>
+  <div class="review-content">
+    <div class="container-fluid">
+      <div class="review-title">
+        <h4>Write a review for <b>{{venue.name}}</b></h4>
+        <textarea ng-model="review.reviewText" placeholder="Write a review..."></textarea>
+        <p ng-show="review.reviewText===undefined || review.reviewText===''" style="color: red;">This field is required.</p>
+      </div>
+      <div class="review-body">
+        <h4>Food</h4>
+        <rzslider rz-slider-model="review.food" rz-slider-options="slider1.options"></rzslider>
+        <h4>Service</h4>
+        <rzslider rz-slider-model="review.service" rz-slider-options="slider2.options"></rzslider>
+        <h4>Value</h4>
+        <rzslider rz-slider-model="review.value" rz-slider-options="slider3.options"></rzslider>
+        <h4>Ambiance</h4>
+        <rzslider rz-slider-model="review.ambiance" rz-slider-options="slider4.options"></rzslider>
+        <h4>Overall Impression</h4>
+        <rzslider rz-slider-model="review.overall" rz-slider-options="slider5.options"></rzslider>
+      </div>
+    </div>
+    <div class="review-border"></div>
+    <div class="container-fluid">
+      <div class="review-body-footer">
+        <p ng-click="toggleTagSelection()">
+          Add any restaurant tags that you think are missing
+          <img class="img-responsive" ng-src="../../images/ic-chevron-right.png" alt="" src="../../images/ic-chevron-right.png">
+        </p>
+      </div>
+      <div class="review-restaurant-tags">
+        <ul class="list-unstyled review-tags">
+          <li class="review-tag" ng-repeat="feature in venue.features">
+            <a href="javasscript:void(0);">
+              {{feature.attribute}}
+              <img class="img-responsive close-icon" ng-src="../../images/ic-times.png" alt="" src="../../images/ic-times.png">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="review-footer text-center">
+      <button ng-click="publishReview()" class="btn btn-block">Publish</button>
+    </div>
+  </div>
+</div>
+<div ng-show="tagSelection">
+  <div selection-buttons selections="features"></div selection-buttons>
+  <p ng-click="toggleTagSelection()">Back</p>
+</div>

@@ -1,0 +1,114 @@
+<div class="venue-details tablet-wrapper" ng-init="detailsInit()" style="height: {{ feedActualHeight + 'px'}};">
+  <div class="tablet-left">
+    <div class="profile-close">
+      <div back-chevron></div>
+    </div>
+    <div class="details-container">
+      <div class="head-title">
+        <h4>{{venue.name}}</h4>
+      </div>
+      <div venue-details details-view="true" venue="venue"></div>
+      <div class="clearfix"></div>
+      <div class="item-nav-wrapper">
+        <ul class="nav nav-justified french-menu">
+          <li>
+          <a><span ng-repeat="cuisine in venue.cuisine track by $index">{{cuisine}}<span ng-hide="$last">/</span></span></a>
+          </li>
+          <li class="text-right">
+            <a>
+              <img class="icon" src="../../images/menu.png" alt=""/>
+              Menu</a>
+          </li>
+        </ul>
+      </div>
+      <div class="item-nav-wrapper">
+        <ul class="nav nav-justified tab-menu">
+          <li ng-class="{
+            'active'
+                    : overview}">
+            <a ng-click="overview = true; features = false; reviewsView = false;">Overview</a>
+          </li>
+          <li ng-class="{
+            'active'
+            : features}">
+            <a ng-click="overview = false;
+                  features = true;
+                  reviewsView = false;">Features</a>
+          </li>
+          <li ng-class="{
+            'active'
+                    :reviewsView}">
+            <a ng-click="overview = false;
+                  features = false;
+                  reviewsView = true;">Reviews</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content-wrapper">
+        <div class="overview" ng-show="overview">
+          <p>{{venue.overview}}</p>
+        </div>
+        <div class="features" ng-show="features">
+          <ul class="list-unstyled" ng-repeat="feature in venue.features">
+            <li>{{feature.attribute}}</li>
+          </ul>
+        </div>
+        <div class="clearfix reviews" ng-show="reviewsView">
+          <div class="clearfix review" ng-repeat="review in reviews | orderBy:'-createdOn'">
+            <div class="name-details clearfix">
+              <img class="img-responsive" ng-src="../../images/profile.png" alt=""/>
+              <div class="col-xs-6">
+                <div class="name" ng-if="review.userId.username">{{review.userId.username}}</div>
+                <div class="name" ng-if="review.googleUserName">{{review.googleUserName}}</div>
+                <small ng-if="review.userId.username">{{review.userId.hotelId.name}}</small>
+                <small ng-if="review.googleUserName">Google User</small>
+              </div>
+              <div class="col-xs-6 review-date">
+                <small>{{review.createdOn| date}}</small>
+              </div>
+            </div>
+            <div class="review-text">
+              {{review.reviewText}} 
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th width="50%">Final Score  <i class="fa fa-star-o"></i>{{review.percentScore}}%</th>
+                    <th width="50%">Overall Impression {{review.overall}}/10</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Food {{review.food}}/10</td>
+                    <td>Service {{review.service}}/10</td>
+                  </tr>
+                  <tr>
+                    <td> Value {{review.value}}/10</td>
+                    <td> Ambiance {{review.ambiance}}/10</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <!--  Map Section For Mobile Starts  -->
+      <div class="dark-color visible-xs">
+        <div details-map venue="venue"></div>
+      </div>
+      <!--  Map Section For Mobile Ends  -->
+      <div class="button-wrapper text-center">
+        <button ui-sref="referral.create({venue_id:venue._id})" class="btn btn-default"><img src="../../images/ic-referral.png" alt=""/> Print Referral</button>
+        <button class="btn btn-default" add-to-itinerary ng-click="addToItinerary(venue._id)"><img src="../../images/ic-add-itinerary.png" alt=""/> Add to Itinerary</button>
+      </div>
+    </div>
+  </div>
+  <!--  Map Section For Tablet Starts  -->
+  <div class="tablet-map hidden-xs" style="height: {{ feedActualHeight + 'px'}};">
+    <div class="dark-color">
+      <div details-map venue="venue"></div>
+    </div>
+  </div>
+  <!--  Map Section For Tablet Ends  -->
+</div>

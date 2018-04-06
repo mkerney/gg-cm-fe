@@ -1,0 +1,90 @@
+<div class="print-referral-wrapper print" ng-init="printInit()">
+  <div class="print-header">
+      <img ng-src="../../images/logo.png" class="img-responsive" alt=""/>
+      <span>Concierge Made</span>
+  </div>
+  <div class="print-media">
+    <img class="main-img" src="../../images/hotel-le-six-paris.png">
+    <div class="container-fluid">
+      <div class="text-center cafe-details">
+        <h3 class="referral-name">{{referral.venueId.name}}</h3>
+        <p class="address">{{referral.venueId.streetAddress}}, {{referral.venueId.city}}, {{referral.venueId.state}}, {{referral.venueId.zip}}</p>
+        <p class="phone">{{referral.venueId.phoneNumber}}</p>
+        <p class="site non-printable"><a href="{{referral.venueId.website}}" target="_blank">{{referral.venueId.website}}</a></p>
+        <p class="site printable"><a>{{referral.venueId.website}}</a></p>
+        <p ng-show="referral.date">Open {{referral.date| date: 'EEEE'}} <span ng-repeat="dayHours in daysHours">{{dayHours.open.time}} - {{dayHours.close.time}}</span></p>
+      </div>
+      <div class="reservation-details text-center">
+        <h4>Reservation Details</h4>
+        <p>Your revservation is for</p>
+        <p class="date">{{referral.date| date: 'MM-dd-yyyy'}}, {{referral.reservationTime}}, {{referral.amountOfPeople}} people</p>
+        <p>Notes:</p>
+        <p>{{referral.notes}}</p>
+      </div>
+      <div class="map-wrapper">
+        <h4 class="map-title">Directions from Hotel Le Six</h4>
+        <div google-map></div>
+      </div>
+    </div>
+    <div class="address-list-wrapper">
+      <ul class="list-unstyled">
+        <li>
+          <a>
+            <img src="../../images/ic-pin-start.png" alt=""/>
+            <p>318W W 51st, New York, NY 10019, USA</p>
+            <span>3,19 Mi, 23 min</span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <p>Walk to 50 st</p>
+            <span>0.5 Mi, 2 min</span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="../../images/ic-pin-end.png" alt=""/>
+            <p>318W W 51st, New York, NY 10019, USA</p>
+            <span>3,19 Mi, 23 min</span>
+          </a>
+        </li>
+      </ul>
+
+      <h4>Other places of interest</h4>
+      <ul class="list-unstyled other-palaces">
+        <li>
+          <a>
+            <img src="../../images/ic-pin-end.png" alt=""/>
+            <p>10101 Montaditos</p>
+            <span>
+              176 bleecker St, New York, NY
+              <br/>
+              10012 (646) 719-171
+              <br/>
+              spanish/Taps/Latin
+              <br/>
+              2.49mi
+            </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <img src="../../images/ic-pin-end.png" alt=""/>
+            <p>Aldea</p>
+            <span>
+              31 W 17th St, New York, NY
+              <br/>
+              100112
+              <br/>
+              (212) 675-77223
+              <br/>
+              Mediterranean
+              <br/>
+              1.73mi
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>   
+  </div>
+</div>

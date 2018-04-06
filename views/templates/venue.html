@@ -1,0 +1,74 @@
+<div class="container-fluid venueContainer">
+  <div class="feed-item-wrapper">
+    <div class="text-center">
+      <!--  Single Item Starts  -->
+      <div id="venue_{{venue._id}}" class="item" ng-class="{highlight: venue.showPlaceName && !detailsView}">
+        <!--  Image Container Starts  -->
+        <div class="image-container" ui-sref="venues.details({venue_id: venue._id})" style="background-image:url('{{venue.primaryPicture.picUrl}}')">
+          <div class="open-status">
+            <div class="clearfix">
+              <div class="col-xs-8 pad0">
+                <div ng-show="venue.openNow">
+                  <span class="open-now">OPEN NOW</span> &centerdot; {{venue.openHourNow | militaryToStandardTimeCaps}}-{{venue.closeHourNow | militaryToStandardTimeCaps}}</div>
+                <div ng-hide="venue.openNow">
+                <span class="open-now">CLOSED</span> <span ng-if="venue.nextOpenDay">&centerdot; {{venue.nextOpenDay}} {{venue.nextOpenTime | militaryToStandardTimeCaps}}</span>
+                </div>
+              </div>
+              <div class="col-xs-4 pad0 text-right">
+                <a  ng-show="detailsView" class="pad0" ui-sref="venues.photos({venue_id: venue._id})" ng-click="$event.stopPropagation()"><img src="../../images/more-picture.png" alt=""></a>
+                <a  ng-hide="detailsView" class="pad0" ui-sref="venues.review({venue_id: venue._id})">
+                  <img src="../../images/ic-star-xs.png" alt="">
+                  <span>{{venue.averageScore}}%</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- <img class="img-responsive main-img" ng-src="{{venue.primaryPicture.picUrl}}" alt="" /> -->
+          <div class="bottom-details">
+            <h2 ng-hide="detailsView">{{venue.name}}</h2>
+            <div class="location">
+              <img src="../../images/ic-location-xs.png" alt="">
+              {{venue.neighborhood}}
+              <span ng-if="venue.priceLevel === 1">$</span>
+              <span ng-if="venue.priceLevel === 2">$$</span>
+              <span ng-if="venue.priceLevel === 3">$$$</span>
+              <span ng-if="venue.priceLevel === 4">$$$$</span>
+            </div>
+          </div>
+        </div>
+        <!--  Image Container Ends  -->
+
+        <!--  Item NavBar Wrapper Starts  -->
+        <div class="item-nav-wrapper clearfix">
+          <ul class="nav navbar-nav">
+            <li>
+              <a>
+                <img src="../../images/ic-fav-off@3x.png" alt=""><span id="favNum">212</span>
+              </a>
+            </li>
+            <li ng-show="detailsView">
+              <a href="javascript:void(0);" ui-sref="venues.review({venue_id:venue._id})">
+                <img src="../../images/ic-star.png" alt="">
+                <span>{{venue.averageScore}}%</span>
+              </a>
+            </li>
+            <li>
+              <a ng-hide="detailsView" ui-sref="referral.create({venue_id: venue._id})"><img src="../../images/ic-referral@3x.png" alt=""></a>
+            </li>
+            <li>
+              <a add-to-itinerary ng-click="addToItinerary(venue._id, venue.inIterinary); venue.inIterinary = true;">
+                <img ng-hide="detailsView" ng-src="{{venue.inIterinary && '../../images/ic-add-itinerary-active@3x.png' || '../../images/ic-add-itinerary@3x.png'}}"/>
+              </a>
+            </li>
+            <li>
+              <a><img src="../../images/ic-direction.png" alt=""><span>{{venue.distance}} mi</span></a>
+            </li>
+
+          </ul>
+        </div>
+      <!--  Item NavBar Wrapper Ends  --> 
+      </div>
+    <!--  Single Item Ends  -->
+    </div>
+  </div>
+</div>

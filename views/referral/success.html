@@ -1,0 +1,18 @@
+<div ng-init="successInit()" class="referral-success-wrapper" style="min-height: {{ referralFormHeight + 'px'}};">
+  <div class="referral-subheader">
+    <div class="profile-close">
+      <div back-chevron></div>
+    </div>
+    <div class="head-title">
+      <h4></h4>
+    </div>
+  </div>
+  <div class="check-wrapper">
+    <img class="img-responsive" ng-src="../../images/ic-success.png" alt=""/>
+    <h4>Success!</h4>
+    <p>The referral was {{status}}.</p>
+  </div>
+  <div class="back-to-feed">
+    <a ui-sref="venues.feed">Back to Restaurant Feed</a>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<nav ng-controller="NavController" class="navbar-wrapper">
+  <div class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="venues.feed">
+        <img ng-src="../../images/logo.png" class="img-responsive" alt=""/>
+        <span>Concierge Made</span>
+      </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="notification" uib-dropdown dropdown-append-to-body auto-close="outsideClick" is-open="dropdownIsOpen">
+        <a ng-hide="printView || webview" class="navbar-icon" id="btn-append-to-to-body" uib-dropdown-toggle>
+          <img class="icon-off" src="../../images/ic-itinerary.png"-webkit-mask (background) alt="">
+          <img class="icon-on" src="../../images/ic-itinerary-on.png"-webkit-mask (background) alt="">
+          <small id="badgeAnimate" ng-show="itineraryStopNumber">{{itineraryStopNumber}}</small>
+        </a>
+        <!--  Itinerary Dropdown Menu Starts  -->
+        <div class="dropdown-menu itinerary-dropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+          <ul class="list-unstyled">
+            <li>
+              <button type="button" class="btn btn-default" ng-click="dropdownIsOpen = false"><img ng-src="../../images/ic-times.png"></button> Itinerary
+            </li>
+            <li ng-if="stopList.length === 0">
+              There aren't any restaurants added to the itinerary.
+            </li>
+            <li ng-repeat="stop in stopList">
+              <a href="javascript:void(0);" ng-click="changeToMainDestination(stop, stopList, itineraryId)">
+                <img ng-show="stop.mainDestination" ng-src="../../images/ic-dest-active.png">
+                <img ng-hide="stop.mainDestination" ng-src="../../images/ic-dest.png"> 
+                {{stop.venueId.name}}
+              </a>
+              <button type="button" class="btn btn-default">
+                <img ng-src="../../images/ic-times.png" ng-click="removeDestination(stop, stopList, itineraryId)">
+              </button>
+            </li>
+            <li ng-if="stopList.length != 0">
+              <p class="mb-5">
+                <img ng-src="../../images/ic-info.png">
+                <strong ng-repeat="stop in stopList" ng-if="stop.mainDestination">{{stop.venueId.name}}</strong> is selected as your main destination.
+              </p>
+              <p>
+                You can select any other place from the list as your Referral's main destination.
+              </p>
+              <button ng-click="createItineraryReferral(stopList)" class="btn btn-default btn-block">Create Referral</button>
+            </li>
+          </ul>
+        </div>
+        <!--  Itinerary Dropdown Menu Ends  -->
+      </li>
+      <li class="notification">
+        <a ng-hide="printView || webview"  class="navbar-icon">
+          <img class="icon-off" src="../../images/ic-alert.png" alt="">
+          <img class="icon-on" src="../../images/ic-alert-on.png" alt="">
+          <small>2</small>
+        </a>
+      </li>
+      <li>
+        <a ng-hide="printView || webview" class="navbar-icon">
+          <img class="icon-off" src="../../images/ic-profile-off.png" alt="">
+          <img class="icon-on" src="../../images/ic-profile-on.png" alt="">
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,67 @@
+<div class="container-fluid text-center">
+  <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{ googleMapsUrl }}">
+    <ng-map zoom="15" center="[{{venue.lat}}, {{venue.lng}}]">
+      <custom-marker position="{{venue.streetAddress}}, {{venue.city}}, {{venue.state}}" centered="true">
+        <div class="marker-container">
+        <div class="marker-pin-name" ng-if="venue.showPlaceName === true">{{venue.name}}</div>
+        <img ng-click="showPlaceName()" class="custom-marker-img" src="../images/ic-pin-marker.png" alt="">
+        </div>
+      </custom-marker>
+    </ng-map>
+  </div>
+</div>
+<div class="map-address">
+  {{venue.streetAddress}}, {{venue.city}}, {{venue.state}}
+</div>
+<div class="route-wrapper">
+  <div class="route">
+    <img class="img-responsive icon" ng-src="../../images/train.png" alt=""/>
+    <p>Station: A, B, C, D, E, F, M</p>
+    <small>12 min</small>
+  </div>
+  <div class="route">
+    <img class="img-responsive icon" ng-src="../../images/bus.png" alt=""/>
+    <p>Lines: A, B, C, D, E, F, M</p>
+    <small>22 min</small>
+  </div>
+</div>
+<div class="contact-wrapper">
+  <div class="contact">
+    <p>
+      <a href="tel:{{venue.phoneNumber}}"><img class="img-responsive icon" ng-src="../../images/call.png" alt=""/> {{venue.phoneNumber}}</a>
+    </p>
+  </div>
+  <div class="contact text-right">
+    <p> 
+      <a href="{{venue.website}}" target="_blank"><img class="img-responsive icon" ng-src="../../images/link.png" alt=""/> Visit Website</a>
+    </p>
+  </div>
+</div>
+
+<!--open times for phones starts-->
+<div class="time-wrapper visible-xs">
+  <img class="img-responsive fa" ng-src="../../images/time.png" alt=""/>
+  <div class="time"  ng-class="{'border-none' : isCollapsed}" >
+    <span ng-class="{'close-collapse' : isCollapsed}" ng-click="isCollapsed = !isCollapsed"> Open Today <i class="fa fa-angle-up icon"></i></span>
+  </div>
+  <div uib-collapse="isCollapsed">
+    <div class="time" ng-repeat="dayHours in venue.storeHours">
+      <span>{{dayHours.open.day | numberToDay}}</span>{{dayHours.open.time | militaryToStandardTime}} - {{dayHours.close.time | militaryToStandardTime}}
+    </div>
+  </div>
+</div>
+<!--open times for phones end-->
+
+<!--open times for iPad starts-->
+<div class="time-wrapper hidden-xs">
+  <img class="img-responsive fa" ng-src="../../images/time.png" alt=""/>
+  <div class="time">
+    <span ng-class="{'close-collapse' : isCollapsed}" ng-click="isCollapsed = !isCollapsed"> Open Today</span>
+  </div>
+  <div>
+    <div class="time" ng-repeat="dayHours in venue.storeHours">
+      <span>{{dayHours.open.day | numberToDay}}</span>{{dayHours.open.time | militaryToStandardTime}} - {{dayHours.close.time | militaryToStandardTime}}
+    </div>
+  </div>
+</div>
+<!--open times for iPad ends-->

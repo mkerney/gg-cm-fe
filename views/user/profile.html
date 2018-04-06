@@ -1,0 +1,24 @@
+<div class="profile-wrapper">
+  <div class="profile-close">
+    <div back-x></div>
+  </div>
+  <div class="details-container">
+    <img class="img-circle" src="https://www.placecage.com/100/100" alt="" />
+    <div class="name">
+      {{user.firstName}} {{user.lastName}}
+    </div>
+    <div class="address">
+      <small>Manager - Hotel Le Six</small>
+    </div>
+  </div>
+  <div class="profile-menu">
+    <ul class="list-group">
+      <li class="list-group-item"><a ui-sref="hotel.details({hotel_id: '57d6bec2e21d5b4718402d0a'})"><i class="fa fa-folder"></i>Hotel Mangement</a></li>
+      <li class="list-group-item"><a ui-sref="venues.feed({favorites:'true'})"><i class="fa fa-heart-o"></i> Favorites</a></li>
+      <li class="list-group-item"><a ui-sref="referral.history"><i class="fa fa-history"></i> Referral History</a></li>
+      <li class="list-group-item"><a ui-sref="user.details({user_id: '57d97192c52ef0a1004e5be2'})"><i class="fa fa-cog"></i> Account Details</a></li>
+      <li class="list-group-item"><a  ui-sref="user.about({user_id: '57d97192c52ef0a1004e5be2'})"><i class="fa fa-exclamation-circle"></i>About</a></li>
+      <li class="list-group-item"><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+.masonry{ /* Masonry container */
+    column-count: 2;
+    column-gap: 5px;
+}
+/*--  More Photo Page Styles  --*/
+.photo-wrapper{
+  position: relative;
+  background-color: #232323;
+}
+.photo-wrapper .container-fluid{
+  padding: 0;
+}
+.photo-wrapper .profile-close{
+  top: 12px;
+}
+.photo-wrapper .head-title{
+  height: 50px;
+  padding: 14px 20px;
+  border-top: 1px solid #4a4a4a;
+  border-bottom: 1px solid #4a4a4a;
+  background-color: #000000;
+  box-shadow: inset 0 -0.5px 0 0 rgba(0, 0, 0, 0.12);
+}
+.photo-wrapper .grid{
+  margin-bottom: 5px
+}
+.photo-wrapper .grid img{
+  width: 100%;
+}
+/*.photo-wrapper .row{
+  margin: 0;
+}
+.photo-wrapper .photo-container img{
+  width: 100%;
+}
+.photo-wrapper .photo-container{
+  padding: 0 2.5px;
+}
+.photo-wrapper .photo-container .grid{
+  width: 50%;
+  float: left;
+  padding: 2.5px;
+}
+.photo-wrapper .photo-container .grid:last-child{
+  padding-bottom: 5px;
+}
+.photo-wrapper .photo-container .grid:nth-child(3n+1){
+  width: 100%;
+}*/
+@media(min-width: 320px) and (max-width: 767px){
+
+}
